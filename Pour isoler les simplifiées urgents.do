@@ -9,7 +9,7 @@ global dir "/Users/guillaumedaudin/Documents/Recherche/Commerce International Fr
 cd "$dir"
 capture log using "`c(current_time)' `c(current_date)'"
 
-import delimited "toflit18_data_GIT/traitements_marchandises/SITC/travail_sitcrev2.csv",  encoding(UTF-8) clear varname(1) stringcols(_all)  
+import delimited "toflit18_data_GIT/traitements_marchandises/SITC/travail_sitcrev3.csv",  encoding(UTF-8) clear varname(1) stringcols(_all)  
 
 	foreach variable of var * {
 		replace `variable'  =usubinstr(`variable',"  "," ",.)
@@ -29,8 +29,8 @@ generate urgent=.
 
 
 foreach file in /*
-		*/ "~/Documents/Recherche/Commerce XVIIIe-XIXe Europe/Belgique/Papier Ann - Loïc/Statistiques/RG_base courante.dta"/*
-		*/ "~/Documents/Recherche/Commerce XVIIIe-XIXe Europe/Belgique/Papier Ann - Loïc/Statistiques/RG_1774 courante.dta" /*
+		*/ "~/Documents/Recherche/Commerce XVIIIe-XIXe Europe/Belgique/Papier Ann - Loïc/Statistiques/Stata/RG_base courante.dta"/*
+		*/ "~/Documents/Recherche/Commerce XVIIIe-XIXe Europe/Belgique/Papier Ann - Loïc/Statistiques/Stata/RG_1774 courante.dta" /*
 		*/ {
 
 	merge 1:m marchandises_simplification using  "`file'"
@@ -46,7 +46,7 @@ foreach file in /*
 	drop _merge
 
 }
-drop  unit-type_bureau
+drop  unit-product
 
 
 
@@ -69,8 +69,8 @@ replace urgent=. if (sitc18_rev3 != "0k" & sitc18_rev3 != "6" & sitc18_rev3 != "
 
 drop marchandises
 
-save "Données Stata/travail_sitcrev2.dta", replace
+save "Données Stata/travail_sitcrev3.dta", replace
 generate sortkey = ustrsortkey(marchandises_simplification, "fr")
 sort sortkey
 drop sortkey
-export delimited "Données Stata/travail_sitcrev2.csv", replace
+export delimited "Données Stata/travail_sitcrev3.csv", replace
