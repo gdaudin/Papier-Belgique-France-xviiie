@@ -188,6 +188,7 @@ replace product = trim(product)
 replace unit=trim(unit)
 
 merge m:1 originalfrenchname dutchtranslation product using  RG_produits_modif.dta
+drop if _merge==2
 
 drop _merge
 
