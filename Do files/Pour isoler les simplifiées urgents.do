@@ -12,11 +12,12 @@ capture log using "`c(current_time)' `c(current_date)'"
 import delimited "toflit18_data_GIT/traitements_marchandises/SITC/travail_sitcrev3.csv",  encoding(UTF-8) clear varname(1) stringcols(_all)  
 
 	foreach variable of var * {
-		replace `variable'  =usubinstr(`variable',"  "," ",.)
-		replace `variable'  =usubinstr(`variable',"  "," ",.)
-		replace `variable'  =usubinstr(`variable',"  "," ",.)
+		capture	replace `variable'  =usubinstr(`variable',"  "," ",.)
+		capture	replace `variable'  =usubinstr(`variable',"  "," ",.)
+		capture	replace `variable'  =usubinstr(`variable',"  "," ",.)
 		capture	replace `variable'  =usubinstr(`variable',"…","...",.)
 		capture replace `variable'  =usubinstr(`variable'," "," ",.)/*Pour espace insécable*/
+		replace `variable' =usubinstr(`variable',"’","'",.)
 		capture	replace `variable'  =ustrtrim(`variable')
 	}
 
