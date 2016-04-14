@@ -85,6 +85,10 @@ collapse (sum) quantity, by(product originalfrenchname dutchtranslation unit exp
 
 save RG_base, replace
 
+rename originalfrenchname marchandises
+
+export delimited "~/Documents/Recherche/Commerce International Français XVIIIe.xls/Balance du commerce/Retranscriptions_Commerce_France/toflit18_data_GIT/foreign_sources/Belgique/RG_base.csv", replace
+
 
 
 
@@ -321,6 +325,10 @@ drop _merge
 
 
 save RG_1774.dta, replace
+
+rename originalfrenchname marchandises
+
+export delimited "~/Documents/Recherche/Commerce International Français XVIIIe.xls/Balance du commerce/Retranscriptions_Commerce_France/toflit18_data_GIT/foreign_sources/Belgique/RG_1774.csv", replace
 
 
 
